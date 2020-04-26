@@ -1,12 +1,13 @@
-FROM node:lts-alpine
-RUN apk --no-cache add python python3==3.8.1-r0 python3-dev==3.8.1-r0 py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
+FROM node:12.16-alpine
+
+RUN apk --no-cache add python python3==3.8.2-r0 python3-dev==3.8.2-r0 py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
   pip --no-cache-dir install awscli && \
   update-ca-certificates
 
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
-  wget -q https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-2.25-r0.apk && \
-  apk add glibc-2.25-r0.apk && \
-  rm -f glibc-2.25-r0.apk
+  wget -q https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.31-r0/glibc-2.31-r0.apk && \
+  apk add glibc-2.31-r0.apk && \
+  rm -f glibc-2.31-r0.apk
 
 RUN mkdir -p /tmp/yarn && \
   mkdir -p /opt/yarn/dist && \
